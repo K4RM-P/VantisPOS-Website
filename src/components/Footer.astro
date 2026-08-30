@@ -1,0 +1,16 @@
+---
+import Logo from './Logo.astro'
+const year = new Date().getFullYear()
+---
+<footer class="border-t border-slate-200 mt-24">
+  <div class="mx-auto max-w-6xl px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <Logo size="sm" />
+    <nav class="flex flex-wrap gap-6 text-sm text-slate-600" aria-label="Footer">
+      <a href="#features" class="hover:text-ink">Features</a>
+      <a href="#pricing" class="hover:text-ink">Pricing</a>
+      <a href="#about" class="hover:text-ink">About</a>
+      <a href="#contact" class="hover:text-ink">Contact</a>
+    </nav>
+    <p class="text-sm text-slate-500">&copy; {year} Vantis. All rights reserved.</p>
+  </div>
+</footer>
