@@ -1,4 +1,3 @@
-import { motion, useReducedMotion } from "motion/react";
 import { TestimonialsColumn, type Testimonial } from "./testimonials-columns-1";
 
 const testimonials: Testimonial[] = [
@@ -72,17 +71,9 @@ const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
 
 export default function Testimonials() {
-  const reduce = useReducedMotion();
-
   return (
     <div>
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl"
-      >
+      <div className="max-w-2xl" data-reveal>
         <h2 className="font-display text-2xl md:text-3xl font-semibold text-ink">
           What independent pharmacies are saying.
         </h2>
@@ -90,14 +81,11 @@ export default function Testimonials() {
           Feedback from pharmacists and owners who moved off legacy systems
           like Fillware onto Vantis.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[640px] overflow-hidden"
+      <div
+        data-reveal="scale"
+        className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[640px] overflow-hidden"
       >
         <TestimonialsColumn testimonials={firstColumn} duration={17} />
         <TestimonialsColumn
@@ -110,7 +98,7 @@ export default function Testimonials() {
           className="hidden lg:block"
           duration={19}
         />
-      </motion.div>
+      </div>
     </div>
   );
 }
