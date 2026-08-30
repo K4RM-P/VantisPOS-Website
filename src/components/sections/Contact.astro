@@ -1,0 +1,73 @@
+---
+---
+<section id="contact" class="mx-auto max-w-3xl px-6 py-16 md:py-24">
+  <h2 class="font-display text-2xl md:text-3xl font-semibold text-ink">Talk to us about your pharmacy.</h2>
+  <p class="mt-4 text-slate-600">
+    Tell us a bit about your pharmacy and what you’re running now — we’ll set up
+    a real walkthrough.
+  </p>
+  <!-- PLACEHOLDER: replace YOUR_FORM_ID with a real Formspree form ID before launch -->
+  <form
+    action="https://formspree.io/f/YOUR_FORM_ID"
+    method="POST"
+    class="mt-8 grid gap-4 max-w-lg"
+  >
+    <div>
+      <label for="name" class="block text-sm font-medium text-ink">Name</label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        required
+        class="mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+      />
+    </div>
+    <div>
+      <label for="pharmacy" class="block text-sm font-medium text-ink">Pharmacy name</label>
+      <input
+        id="pharmacy"
+        name="pharmacy"
+        type="text"
+        required
+        class="mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-ink">Email</label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        required
+        class="mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+      />
+    </div>
+    <div>
+      <label for="phone" class="block text-sm font-medium text-ink">Phone (optional)</label>
+      <input
+        id="phone"
+        name="phone"
+        type="tel"
+        class="mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+      />
+    </div>
+    <div>
+      <label for="message" class="block text-sm font-medium text-ink">What are you running now, and what’s not working?</label>
+      <textarea
+        id="message"
+        name="message"
+        rows="4"
+        class="mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      class="mt-2 inline-flex items-center justify-center rounded bg-teal px-6 py-3 font-semibold text-white hover:bg-teal-dark"
+    >
+      Send
+    </button>
+  </form>
+  <p class="mt-6 text-sm text-slate-500">
+    Prefer email or phone? <a href="mailto:hello@vantispos.com" class="text-teal-dark underline">hello@vantispos.com</a>
+  </p>
+</section>
