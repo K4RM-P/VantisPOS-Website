@@ -1,0 +1,11 @@
+<svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vantisBarGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1D9E75" />
+      <stop offset="100%" stop-color="#085041" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="46" width="16" height="30" rx="6" fill="url(#vantisBarGradient)" />
+  <rect x="32" y="30" width="16" height="46" rx="6" fill="url(#vantisBarGradient)" />
+  <rect x="60" y="6" width="16" height="70" rx="6" fill="url(#vantisBarGradient)" />
+</svg>
