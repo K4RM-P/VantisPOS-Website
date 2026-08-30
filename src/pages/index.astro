@@ -1,16 +1,38 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 import Hero from '../components/sections/Hero.astro'
 import Problem from '../components/sections/Problem.astro'
 import Checkout from '../components/sections/Checkout.astro'
-import Footer from '../components/Footer.astro'
+import CustomerCredit from '../components/sections/CustomerCredit.astro'
+import Catalog from '../components/sections/Catalog.astro'
+import TieredPricing from '../components/sections/TieredPricing.astro'
+import Reports from '../components/sections/Reports.astro'
+import BackupStaff from '../components/sections/BackupStaff.astro'
+import HowSwitching from '../components/sections/HowSwitching.astro'
+import Pricing from '../components/sections/Pricing.astro'
+import About from '../components/sections/About.astro'
+import Contact from '../components/sections/Contact.astro'
 ---
-<BaseLayout title="Vantis" description="test">
+<BaseLayout
+  title="Vantis — Pharmacy POS built for the register"
+  description="Vantis is a pharmacy point-of-sale system with real split-tender checkout, an auditable customer credit ledger, byte-exact McKesson catalogue import, and reporting that actually nets out refunds. Built to replace legacy systems like Fillware."
+>
   <Header />
-  <Hero />
-  <Problem />
-  <Checkout />
-  <main id="main"><p class="p-6">placeholder</p></main>
+  <main id="main">
+    <Hero />
+    <Problem />
+    <Checkout />
+    <CustomerCredit />
+    <Catalog />
+    <TieredPricing />
+    <Reports />
+    <BackupStaff />
+    <HowSwitching />
+    <Pricing />
+    <About />
+    <Contact />
+  </main>
   <Footer />
 </BaseLayout>
