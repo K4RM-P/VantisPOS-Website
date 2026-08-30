@@ -19,7 +19,9 @@ Just push to `main` — Cloudflare Pages rebuilds and redeploys automatically on
 
 ## Environment / secrets
 
-None required. The contact form posts directly to Formspree from the browser
+None required. This repo pins Node 22 via `.node-version` — Cloudflare Pages
+reads this automatically, no manual Node version configuration needed. The
+contact form posts directly to Formspree from the browser
 (`YOUR_FORM_ID` in `src/components/sections/Contact.astro` — swap this for
 your real Formspree form ID before going live, then create the form at
 https://formspree.io).
