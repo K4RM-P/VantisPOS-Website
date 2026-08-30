@@ -1,0 +1,23 @@
+---
+import LedgerMockup from '../mockups/LedgerMockup.astro'
+---
+<section class="bg-slate-50 border-y border-slate-200">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20 grid md:grid-cols-2 gap-12 items-center">
+    <div class="order-2 md:order-1">
+      <LedgerMockup />
+    </div>
+    <div class="order-1 md:order-2">
+      <p class="text-sm font-semibold text-teal-dark uppercase tracking-wide">Customer accounts</p>
+      <h2 class="mt-2 font-display text-2xl md:text-3xl font-semibold text-ink">
+        A real ledger, not a mutable balance.
+      </h2>
+      <p class="mt-4 text-slate-600">
+        Every fill, short-pay, and applied-balance event is its own timestamped line,
+        tied to a user and station. If a customer disputes what they owe at the counter,
+        pull up exactly which past sales and which items make up that number — the
+        system can reconstruct the full breakdown on demand, and it's built to always
+        sum to the live balance, not just look like it does.
+      </p>
+    </div>
+  </div>
+</section>
