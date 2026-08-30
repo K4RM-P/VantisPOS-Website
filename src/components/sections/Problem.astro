@@ -1,4 +1,6 @@
 ---
+import ProblemStack from '../ui/ProblemStack'
+
 const painPoints = [
   {
     title: 'A tab that\'s just a number',
@@ -16,7 +18,7 @@ const painPoints = [
 ---
 <section class="bg-slate-50 border-y border-slate-200">
   <div class="mx-auto max-w-6xl px-6 py-16 md:py-20 grid md:grid-cols-5 gap-10">
-    <div class="md:col-span-2">
+    <div class="md:col-span-2" data-reveal>
       <h2 class="font-display text-2xl md:text-3xl font-semibold text-ink">
         If you've run Fillware, you already know the problems.
       </h2>
@@ -25,13 +27,8 @@ const painPoints = [
         make a shift on a legacy pharmacy POS harder than it needs to be.
       </p>
     </div>
-    <div class="md:col-span-3 space-y-6">
-      {painPoints.map((p) => (
-        <div class="border-l-2 border-teal pl-5">
-          <h3 class="font-display font-semibold text-ink">{p.title}</h3>
-          <p class="mt-1 text-sm text-slate-600">{p.body}</p>
-        </div>
-      ))}
+    <div class="md:col-span-3">
+      <ProblemStack points={painPoints} client:visible />
     </div>
   </div>
 </section>
