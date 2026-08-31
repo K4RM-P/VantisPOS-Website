@@ -94,6 +94,24 @@
   background-size: 22px 22px;
 }
 
+/* Hero background paths: cheap compositor-only opacity pulse
+   (no pathLength/pathOffset — those force per-frame path re-stroking
+   and were causing severe jank with many paths animating at once). */
+.bg-path {
+  animation: bg-path-pulse 12s ease-in-out infinite;
+  will-change: opacity;
+  opacity: var(--o, 0.2);
+}
+@keyframes bg-path-pulse {
+  0%, 100% { opacity: var(--o, 0.2); }
+  50% { opacity: calc(var(--o, 0.2) * 2.5); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-path {
+    animation: none;
+  }
+}
+
 /* Active-section nav underline */
 nav[aria-label="Primary"] a {
   position: relative;
@@ -110,4 +128,30 @@ nav[aria-label="Primary"] a::after {
 }
 nav[aria-label="Primary"] a.is-active::after {
   right: 0;
+}
+
+/* Mobile: strip scroll-reveal, hover, and cursor-fx animations for a
+   simple, static layout. Desktop (>=768px) is untouched. */
+@media (max-width: 767px) {
+  .js-reveal [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .card-hover {
+    transition: none !important;
+  }
+  .card-hover:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  [data-spotlight]::after {
+    display: none !important;
+  }
+  nav[aria-label="Primary"] a::after {
+    transition: none !important;
+  }
+  #scroll-progress {
+    display: none !important;
+  }
 }

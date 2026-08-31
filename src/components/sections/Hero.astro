@@ -1,26 +1,26 @@
 ---
 import { BackgroundPaths } from '../ui/BackgroundPaths'
 ---
-<section class="relative overflow-hidden min-h-[clamp(560px,100dvh,880px)] flex items-center">
+<section class="relative overflow-hidden min-h-0 md:min-h-[clamp(560px,100dvh,880px)] flex items-center">
   <div
     class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,theme(colors.teal.light),transparent)]"
     aria-hidden="true"
   ></div>
-  <div class="absolute inset-0 -z-10">
-    <BackgroundPaths client:visible />
+  <div class="absolute inset-0 -z-10 hidden md:block">
+    <BackgroundPaths />
   </div>
-  <div class="relative mx-auto max-w-6xl px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
+  <div class="relative mx-auto max-w-6xl px-6 py-10 md:py-24 grid md:grid-cols-2 gap-8 md:gap-12 items-center">
     <div>
-      <h1 class="font-display text-4xl md:text-5xl font-semibold tracking-tight text-ink leading-tight">
+      <h1 class="font-display text-3xl md:text-5xl font-semibold tracking-tight text-ink leading-tight">
         A pharmacy POS built for the register, not a demo.
       </h1>
-      <p class="mt-6 text-lg text-slate-600 max-w-md">
+      <p class="mt-4 md:mt-6 text-base md:text-lg text-slate-600 max-w-md">
         Vantis replaces aging systems like Fillware with real split-tender checkout,
         an auditable customer credit ledger, byte-exact McKesson catalogue import,
         and reporting that actually nets out refunds and discounts — built by
         studying what independent pharmacies are stuck fighting today.
       </p>
-      <div class="mt-8 flex gap-4">
+      <div class="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
         <a href="#contact" class="inline-flex items-center rounded bg-teal-dark px-6 py-3 font-semibold text-white transition active:scale-95 hover:bg-teal hover:-translate-y-0.5 hover:shadow-lg hover:shadow-teal-dark/20">
           Book a walkthrough
         </a>
