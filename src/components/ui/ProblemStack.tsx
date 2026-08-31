@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { useIsMobile } from "./useIsMobile";
 
 export type PainPoint = { title: string; body: string };
 
@@ -14,6 +15,8 @@ function StackCard({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const skipMotion = reduce || isMobile;
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -25,12 +28,12 @@ function StackCard({
 
   return (
     <div
+      className={`${skipMotion ? "" : "sticky top-24"} border-l-2 border-teal bg-slate-50 pl-5 py-4 pr-4`}
+      style={skipMotion ? undefined : { zIndex: index + 1 }}
       ref={ref}
-      className="sticky top-24 border-l-2 border-teal bg-slate-50 pl-5 py-4 pr-4"
-      style={{ zIndex: index + 1 }}
     >
       <motion.div
-        style={reduce ? undefined : { scale, opacity }}
+        style={skipMotion ? undefined : { scale, opacity }}
         className="origin-top"
       >
         <h3 className="font-display font-semibold text-ink">{point.title}</h3>

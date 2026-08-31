@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { useIsMobile } from "./useIsMobile";
 
 export type Testimonial = {
   text: string;
@@ -15,11 +16,13 @@ export const TestimonialsColumn = (props: {
   duration?: number;
 }) => {
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const skipMotion = reduce || isMobile;
 
   return (
     <div className={props.className}>
       <motion.div
-        animate={reduce ? undefined : { translateY: "-50%" }}
+        animate={skipMotion ? undefined : { translateY: "-50%" }}
         transition={{
           duration: props.duration || 16,
           repeat: Infinity,
@@ -28,11 +31,11 @@ export const TestimonialsColumn = (props: {
         }}
         className="flex flex-col gap-6 pb-6"
       >
-        {[...new Array(2).fill(0)].map((_, dupIndex) => (
+        {[...new Array(skipMotion ? 1 : 2).fill(0)].map((_, dupIndex) => (
           <React.Fragment key={dupIndex}>
             {props.testimonials.map(({ text, name, role, initials, hue }, i) => (
               <div
-                className="p-8 rounded border border-slate-200 bg-white shadow-sm max-w-xs w-full transition duration-300 hover:-translate-y-1 hover:rotate-1 hover:border-teal/40 hover:shadow-lg"
+                className="p-5 md:p-8 rounded border border-slate-200 bg-white shadow-sm max-w-xs w-full md:transition md:duration-300 md:hover:-translate-y-1 md:hover:rotate-1 md:hover:border-teal/40 md:hover:shadow-lg"
                 key={`${dupIndex}-${i}`}
               >
                 <p className="text-sm text-ink leading-relaxed">{text}</p>

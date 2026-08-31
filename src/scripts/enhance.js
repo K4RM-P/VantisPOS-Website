@@ -23,7 +23,10 @@ spotlightEls.forEach((el) => {
 
 // Count-up numbers on scroll into view
 const countEls = document.querySelectorAll('[data-count-to]')
-if (countEls.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+const skipCountAnimation =
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+  window.matchMedia('(max-width: 767px)').matches
+if (countEls.length && !skipCountAnimation) {
   const countObserver = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {

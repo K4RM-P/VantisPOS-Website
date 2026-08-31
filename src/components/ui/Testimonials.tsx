@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { TestimonialsColumn, type Testimonial } from "./testimonials-columns-1";
+import { useIsMobile } from "./useIsMobile";
 
 function useInView<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -97,6 +98,7 @@ const thirdColumn = testimonials.slice(6, 9);
 export default function Testimonials() {
   const heading = useInView<HTMLDivElement>();
   const columns = useInView<HTMLDivElement>();
+  const isMobile = useIsMobile();
 
   return (
     <div>
@@ -117,8 +119,8 @@ export default function Testimonials() {
 
       <div
         ref={columns.ref}
-        className={`flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[640px] overflow-hidden motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
-          columns.inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        className={`flex justify-center gap-6 mt-10 md:[mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] md:[-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] md:max-h-[640px] md:overflow-hidden motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+          isMobile || columns.inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       >
         <TestimonialsColumn testimonials={firstColumn} duration={17} />
