@@ -13,7 +13,7 @@ export interface PricingPlan {
   period?: string;
   isCustom?: boolean;
   customPrice?: string;
-  features: string[];
+  features: (string | { text: string; highlight?: boolean })[];
   description: string;
   buttonText: string;
   href: string;
@@ -73,7 +73,7 @@ export function PricingCards({
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-10 items-center max-w-3xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-10 items-center max-w-5xl mx-auto">
         {plans.map((plan, index) => (
           <motion.div
             key={plan.name}
@@ -116,12 +116,25 @@ export function PricingCards({
             </p>
 
             <ul className="mt-6 flex flex-col gap-2.5 text-left">
-              {plan.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2 text-sm text-slate-600">
-                  <Check className="h-4 w-4 text-teal-dark mt-0.5 flex-shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
+              {plan.features.map((feature) => {
+                const isObj = typeof feature !== "string";
+                const text = isObj ? feature.text : feature;
+                const highlight = isObj && feature.highlight;
+                return (
+                  <li key={text} className="flex items-start gap-2 text-sm text-slate-600">
+                    <Check className="h-4 w-4 mt-0.5 flex-shrink-0 text-teal-dark" />
+                    <span
+                      className={
+                        highlight
+                          ? "font-bold bg-gradient-to-r from-teal-dark to-teal bg-clip-text text-transparent"
+                          : undefined
+                      }
+                    >
+                      {text}
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
 
             <hr className="my-6 border-slate-200" />

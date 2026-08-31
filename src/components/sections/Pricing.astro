@@ -1,25 +1,38 @@
 ---
 import { PricingCards } from '../ui/PricingCards'
 
+const subscriptionFeatures = [
+  'Split-tender checkout (cash, card, e-transfer, store credit)',
+  'Byte-exact McKesson catalogue import',
+  'Auditable customer credit ledger',
+  'Reports that net out refunds & discounts',
+  'Cost-based tiered pricing engine',
+  'Verified nightly backups',
+  'Manager & cashier role permissions',
+]
+
 const plans = [
   {
     name: 'Subscription',
     price: 50,
     yearlyPrice: 30,
     period: 'month',
-    features: [
-      'Split-tender checkout (cash, card, e-transfer, store credit)',
-      'Byte-exact McKesson catalogue import',
-      'Auditable customer credit ledger',
-      'Reports that net out refunds & discounts',
-      'Cost-based tiered pricing engine',
-      'Verified nightly backups',
-      'Manager & cashier role permissions',
-    ],
+    features: [...subscriptionFeatures, '1 terminal'],
     description: 'Billed monthly at $50, or $30/mo when billed annually.',
     buttonText: 'Book a walkthrough',
     href: '#contact',
     isPopular: true,
+  },
+  {
+    name: 'Unlimited Terminals',
+    price: 70,
+    yearlyPrice: 50,
+    period: 'month',
+    features: [...subscriptionFeatures, { text: 'Unlimited terminals', highlight: true }],
+    description: 'Billed monthly at $70, or $50/mo when billed annually.',
+    buttonText: 'Book a walkthrough',
+    href: '#contact',
+    isPopular: false,
   },
   {
     name: 'One-Time Purchase',
