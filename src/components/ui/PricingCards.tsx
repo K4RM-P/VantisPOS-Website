@@ -31,7 +31,7 @@ export function PricingCards({
   title = "Pricing, plainly.",
   description = "One subscription, billed however you prefer. Prefer to own it outright? Talk to us about a one-time purchase.",
 }: PricingCardsProps) {
-  const [isMonthly, setIsMonthly] = useState(true);
+  const [isMonthly, setIsMonthly] = useState(false);
   const reduce = useReducedMotion();
   const isMobile = useIsMobile();
   const skipMotion = reduce || isMobile;
@@ -39,7 +39,7 @@ export function PricingCards({
 
   const handleToggle = (checked: boolean) => {
     setIsMonthly(!checked);
-    if (checked && switchRef.current) {
+    if (switchRef.current) {
       const rect = switchRef.current.getBoundingClientRect();
       confetti({
         particleCount: 50,
@@ -109,7 +109,7 @@ export function PricingCards({
                 >
                   <NumberFlow
                     value={isMonthly ? plan.price ?? 0 : plan.yearlyPrice ?? 0}
-                    format={{ style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }}
+                    format={{ style: "currency", currency: "CAD", minimumFractionDigits: 0, maximumFractionDigits: 0 }}
                     willChange
                     transformTiming={{ duration: 500, easing: "ease-out" }}
                   />
