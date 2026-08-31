@@ -4,7 +4,7 @@ const inputClass =
   "mt-1 block w-full rounded border border-slate-300 px-3 py-2 text-sm focus:border-teal focus:outline-none focus:ring-1 focus:ring-teal";
 
 export function ContactForm() {
-  const [state, handleSubmit] = useForm("mnpqpavq");
+  const [state, handleSubmit] = useForm("xppzparb");
 
   if (state.succeeded) {
     return (
