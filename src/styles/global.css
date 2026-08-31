@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @config "../../tailwind.config.mjs";
 
+/* Offset anchor-linked sections so the sticky header doesn't clip
+   their top when navigated to via #hash or in-page nav links. */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
 /* Scroll-reveal: progressive enhancement, only active once reveal.js has
    run, so content never stays hidden without JS. */
 .js-reveal [data-reveal] {

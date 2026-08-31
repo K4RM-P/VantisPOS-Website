@@ -13,17 +13,6 @@ const subscriptionFeatures = [
 
 const plans = [
   {
-    name: 'Subscription',
-    price: 50,
-    yearlyPrice: 30,
-    period: 'month',
-    features: [...subscriptionFeatures, '1 terminal'],
-    description: 'Billed monthly at $50, or $30/mo when billed annually.',
-    buttonText: 'Book a walkthrough',
-    href: '#contact',
-    isPopular: true,
-  },
-  {
     name: 'Unlimited Terminals',
     price: 70,
     yearlyPrice: 50,
@@ -33,6 +22,17 @@ const plans = [
     buttonText: 'Book a walkthrough',
     href: '#contact',
     isPopular: false,
+  },
+  {
+    name: 'Subscription',
+    price: 50,
+    yearlyPrice: 30,
+    period: 'month',
+    features: [...subscriptionFeatures, '1 terminal'],
+    description: 'Billed monthly at $50, or $30/mo when billed annually.',
+    buttonText: 'Book a walkthrough',
+    href: '#contact',
+    isPopular: true,
   },
   {
     name: 'One-Time Purchase',
@@ -55,9 +55,9 @@ const plans = [
     class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_50%_100%,theme(colors.teal.light),transparent)]"
     aria-hidden="true"
   ></div>
-  <div class="relative mx-auto max-w-6xl px-6 py-10 md:py-20">
+  <div class="relative mx-auto max-w-6xl px-6 py-6 md:py-10">
     <PricingCards plans={plans} client:visible />
-    <p class="mt-6 text-center text-xs text-slate-600">
+    <p class="mt-8 md:mt-6 text-center text-xs text-slate-600">
       A one-time setup fee covers catalogue import, hardware pairing, and staff training.
     </p>
   </div>
