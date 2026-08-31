@@ -1,4 +1,28 @@
+import { useEffect, useRef, useState } from "react";
 import { TestimonialsColumn, type Testimonial } from "./testimonials-columns-1";
+
+function useInView<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, inView };
+}
 
 const testimonials: Testimonial[] = [
   {
@@ -71,9 +95,17 @@ const secondColumn = testimonials.slice(3, 6);
 const thirdColumn = testimonials.slice(6, 9);
 
 export default function Testimonials() {
+  const heading = useInView<HTMLDivElement>();
+  const columns = useInView<HTMLDivElement>();
+
   return (
     <div>
-      <div className="max-w-2xl" data-reveal>
+      <div
+        ref={heading.ref}
+        className={`max-w-2xl motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+          heading.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        }`}
+      >
         <h2 className="font-display text-2xl md:text-3xl font-semibold text-ink">
           What independent pharmacies are saying.
         </h2>
@@ -84,8 +116,10 @@ export default function Testimonials() {
       </div>
 
       <div
-        data-reveal="scale"
-        className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[640px] overflow-hidden"
+        ref={columns.ref}
+        className={`flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_15%,black_85%,transparent)] max-h-[640px] overflow-hidden motion-safe:transition motion-safe:duration-700 motion-safe:ease-out ${
+          columns.inView ? "opacity-100 scale-100" : "opacity-0 scale-95"
+        }`}
       >
         <TestimonialsColumn testimonials={firstColumn} duration={17} />
         <TestimonialsColumn
