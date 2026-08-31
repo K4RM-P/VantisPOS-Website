@@ -1,0 +1,132 @@
+import { useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
+import { Check, Star } from "lucide-react";
+import confetti from "canvas-confetti";
+import NumberFlow from "@number-flow/react";
+import { Switch } from "./Switch";
+
+export interface PricingPlan {
+  name: string;
+  price: number;
+  yearlyPrice: number;
+  period: string;
+  features: string[];
+  description: string;
+  buttonText: string;
+  href: string;
+  isPopular: boolean;
+}
+
+interface PricingCardsProps {
+  plans: PricingPlan[];
+  title?: string;
+  description?: string;
+}
+
+export function PricingCards({
+  plans,
+  title = "Pricing, plainly.",
+  description = "Figures below are placeholders pending final pricing — ask us for current rates.",
+}: PricingCardsProps) {
+  const [isMonthly, setIsMonthly] = useState(true);
+  const reduce = useReducedMotion();
+  const switchRef = useRef<HTMLButtonElement>(null);
+
+  const handleToggle = (checked: boolean) => {
+    setIsMonthly(!checked);
+    if (checked && switchRef.current) {
+      const rect = switchRef.current.getBoundingClientRect();
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: {
+          x: (rect.left + rect.width / 2) / window.innerWidth,
+          y: (rect.top + rect.height / 2) / window.innerHeight,
+        },
+        colors: ["#1D9E75", "#085041", "#E6F5EF"],
+        ticks: 200,
+        gravity: 1.2,
+        decay: 0.94,
+        startVelocity: 30,
+        shapes: ["circle"],
+      });
+    }
+  };
+
+  return (
+    <div>
+      <div className="text-center space-y-3">
+        <h2 className="font-display text-2xl md:text-3xl font-semibold text-ink">{title}</h2>
+        <p className="text-slate-600 max-w-xl mx-auto">{description}</p>
+      </div>
+
+      <div className="flex justify-center items-center gap-3 mt-8">
+        <span className="text-sm font-medium text-slate-600">Monthly</span>
+        <Switch ref={switchRef} checked={!isMonthly} onCheckedChange={handleToggle} />
+        <span className="text-sm font-medium text-ink">
+          Annual <span className="text-teal-dark font-semibold">(Save 20%)</span>
+        </span>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 items-center">
+        {plans.map((plan, index) => (
+          <motion.div
+            key={plan.name}
+            initial={{ y: 30, opacity: 0 }}
+            whileInView={reduce ? { opacity: 1 } : { y: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className={`relative rounded-2xl border bg-white p-6 flex flex-col text-center ${
+              plan.isPopular
+                ? "border-2 border-teal shadow-xl shadow-teal-dark/10 md:-translate-y-3"
+                : "border-slate-200"
+            }`}
+          >
+            {plan.isPopular && (
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1 rounded-full bg-teal-dark px-3 py-1 text-xs font-semibold text-white">
+                <Star className="h-3 w-3 fill-current" />
+                Most popular
+              </div>
+            )}
+            <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide">{plan.name}</p>
+            <div className="mt-4 flex items-baseline justify-center gap-1">
+              <span className="font-display text-4xl font-semibold text-ink tabular-nums">
+                <NumberFlow
+                  value={isMonthly ? plan.price : plan.yearlyPrice}
+                  format={{ style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }}
+                  willChange
+                  transformTiming={{ duration: 500, easing: "ease-out" }}
+                />
+              </span>
+              <span className="text-sm text-slate-500">/ {plan.period}</span>
+            </div>
+            <p className="text-xs text-slate-500 mt-1">{isMonthly ? "billed monthly" : "billed annually"}</p>
+
+            <ul className="mt-6 flex flex-col gap-2.5 text-left">
+              {plan.features.map((feature) => (
+                <li key={feature} className="flex items-start gap-2 text-sm text-slate-600">
+                  <Check className="h-4 w-4 text-teal-dark mt-0.5 flex-shrink-0" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <hr className="my-6 border-slate-200" />
+
+            <a
+              href={plan.href}
+              className={`inline-flex items-center justify-center rounded px-6 py-3 font-semibold transition active:scale-95 ${
+                plan.isPopular
+                  ? "bg-teal-dark text-white hover:bg-teal"
+                  : "border border-slate-300 text-ink hover:border-slate-400"
+              }`}
+            >
+              {plan.buttonText}
+            </a>
+            <p className="mt-4 text-xs text-slate-500">{plan.description}</p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}

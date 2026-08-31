@@ -1,40 +1,72 @@
 ---
+import { PricingCards } from '../ui/PricingCards'
+
+// PLACEHOLDER PRICING: tier names/figures below are illustrative only,
+// pending real numbers from the user.
+const plans = [
+  {
+    name: 'Single Register',
+    price: 149,
+    yearlyPrice: 119,
+    period: 'month',
+    features: [
+      'Split-tender checkout (cash, card, e-transfer, store credit)',
+      'Byte-exact McKesson catalogue import',
+      'Verified nightly backups',
+      'Manager & cashier role permissions',
+      'Email support',
+    ],
+    description: 'For a single-register pharmacy just getting started.',
+    buttonText: 'Book a walkthrough',
+    href: '#contact',
+    isPopular: false,
+  },
+  {
+    name: 'Growing Pharmacy',
+    price: 249,
+    yearlyPrice: 199,
+    period: 'month',
+    features: [
+      'Everything in Single Register',
+      'Auditable customer credit ledger',
+      'Reports that net out refunds & discounts',
+      'Cost-based tiered pricing engine',
+      'Up to 3 registers',
+      'Priority support',
+    ],
+    description: 'Most independent pharmacies land here.',
+    buttonText: 'Book a walkthrough',
+    href: '#contact',
+    isPopular: true,
+  },
+  {
+    name: 'Multi-Location',
+    price: 449,
+    yearlyPrice: 359,
+    period: 'month',
+    features: [
+      'Everything in Growing Pharmacy',
+      'Unlimited registers',
+      'Multi-location reporting',
+      'Dedicated onboarding specialist',
+      'Custom catalogue reconciliation rules',
+    ],
+    description: 'For pharmacy groups running more than one location.',
+    buttonText: 'Talk to sales',
+    href: '#contact',
+    isPopular: false,
+  },
+]
 ---
 <section id="pricing" class="texture-dots relative overflow-hidden bg-slate-50 border-y border-slate-200">
   <div
     class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_50%_100%,theme(colors.teal.light),transparent)]"
     aria-hidden="true"
   ></div>
-  <div class="relative mx-auto max-w-3xl px-6 py-16 md:py-20">
-    <div data-reveal>
-      <h2 class="font-display text-2xl md:text-3xl font-semibold text-ink">Pricing, plainly.</h2>
-      <p class="mt-4 text-slate-600">
-        One flat subscription per pharmacy, a per-register add-on if you run more than
-        one till, and a one-time setup fee that covers catalogue import, hardware pairing,
-        and staff training.
-      </p>
-    </div>
-    <div class="relative mt-8" data-reveal="scale">
-      <span class="eyebrow absolute -top-3 left-5 z-10 bg-white shadow-sm">No hidden fees</span>
-      <div class="card-hover rounded border-2 border-teal/30 bg-white divide-y divide-slate-200" data-spotlight>
-        <div class="flex items-center justify-between px-5 py-4">
-          <span class="text-ink font-medium">Base subscription</span>
-          <!-- PLACEHOLDER PRICE: swap before launch -->
-          <span class="font-mono tabular-nums text-ink">$149/mo</span>
-        </div>
-        <div class="flex items-center justify-between px-5 py-4">
-          <span class="text-ink font-medium">Additional register</span>
-          <!-- PLACEHOLDER PRICE: swap before launch -->
-          <span class="font-mono tabular-nums text-ink">$39/mo each</span>
-        </div>
-        <div class="flex items-center justify-between px-5 py-4">
-          <span class="text-ink font-medium">One-time setup</span>
-          <!-- PLACEHOLDER PRICE: swap before launch -->
-          <span class="font-mono tabular-nums text-ink">$499</span>
-        </div>
-      </div>
-    </div>
-    <p class="mt-4 text-xs text-slate-600">
+  <div class="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <PricingCards plans={plans} client:visible />
+    <p class="mt-6 text-center text-xs text-slate-600">
+      A one-time setup fee covers catalogue import, hardware pairing, and staff training.
       Figures above are placeholders pending final pricing — ask us for current rates.
     </p>
   </div>
