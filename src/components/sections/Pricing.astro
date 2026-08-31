@@ -1,58 +1,37 @@
 ---
 import { PricingCards } from '../ui/PricingCards'
 
-// PLACEHOLDER PRICING: tier names/figures below are illustrative only,
-// pending real numbers from the user.
 const plans = [
   {
-    name: 'Single Register',
-    price: 149,
-    yearlyPrice: 119,
+    name: 'Subscription',
+    price: 50,
+    yearlyPrice: 30,
     period: 'month',
     features: [
       'Split-tender checkout (cash, card, e-transfer, store credit)',
       'Byte-exact McKesson catalogue import',
-      'Verified nightly backups',
-      'Manager & cashier role permissions',
-      'Email support',
-    ],
-    description: 'For a single-register pharmacy just getting started.',
-    buttonText: 'Book a walkthrough',
-    href: '#contact',
-    isPopular: false,
-  },
-  {
-    name: 'Growing Pharmacy',
-    price: 249,
-    yearlyPrice: 199,
-    period: 'month',
-    features: [
-      'Everything in Single Register',
       'Auditable customer credit ledger',
       'Reports that net out refunds & discounts',
       'Cost-based tiered pricing engine',
-      'Up to 3 registers',
-      'Priority support',
+      'Verified nightly backups',
+      'Manager & cashier role permissions',
     ],
-    description: 'Most independent pharmacies land here.',
+    description: 'Billed monthly at $50, or $30/mo when billed annually.',
     buttonText: 'Book a walkthrough',
     href: '#contact',
     isPopular: true,
   },
   {
-    name: 'Multi-Location',
-    price: 449,
-    yearlyPrice: 359,
-    period: 'month',
+    name: 'One-Time Purchase',
+    isCustom: true,
+    customPrice: 'Custom',
     features: [
-      'Everything in Growing Pharmacy',
-      'Unlimited registers',
-      'Multi-location reporting',
-      'Dedicated onboarding specialist',
-      'Custom catalogue reconciliation rules',
+      'Own your license outright, no recurring subscription',
+      'Same core feature set as the subscription plan',
+      'Pricing scoped to your pharmacy’s setup',
     ],
-    description: 'For pharmacy groups running more than one location.',
-    buttonText: 'Talk to sales',
+    description: 'For pharmacies that would rather buy outright than subscribe.',
+    buttonText: 'Contact sales',
     href: '#contact',
     isPopular: false,
   },
@@ -63,11 +42,10 @@ const plans = [
     class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_50%_100%,theme(colors.teal.light),transparent)]"
     aria-hidden="true"
   ></div>
-  <div class="relative mx-auto max-w-6xl px-6 py-16 md:py-20">
+  <div class="relative mx-auto max-w-6xl px-6 py-10 md:py-20">
     <PricingCards plans={plans} client:visible />
     <p class="mt-6 text-center text-xs text-slate-600">
       A one-time setup fee covers catalogue import, hardware pairing, and staff training.
-      Figures above are placeholders pending final pricing — ask us for current rates.
     </p>
   </div>
 </section>

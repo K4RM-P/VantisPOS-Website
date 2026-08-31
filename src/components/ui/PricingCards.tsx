@@ -4,12 +4,15 @@ import { Check, Star } from "lucide-react";
 import confetti from "canvas-confetti";
 import NumberFlow from "@number-flow/react";
 import { Switch } from "./Switch";
+import { useIsMobile } from "./useIsMobile";
 
 export interface PricingPlan {
   name: string;
-  price: number;
-  yearlyPrice: number;
-  period: string;
+  price?: number;
+  yearlyPrice?: number;
+  period?: string;
+  isCustom?: boolean;
+  customPrice?: string;
   features: string[];
   description: string;
   buttonText: string;
@@ -26,10 +29,12 @@ interface PricingCardsProps {
 export function PricingCards({
   plans,
   title = "Pricing, plainly.",
-  description = "Figures below are placeholders pending final pricing — ask us for current rates.",
+  description = "One subscription, billed however you prefer. Prefer to own it outright? Talk to us about a one-time purchase.",
 }: PricingCardsProps) {
   const [isMonthly, setIsMonthly] = useState(true);
   const reduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const skipMotion = reduce || isMobile;
   const switchRef = useRef<HTMLButtonElement>(null);
 
   const handleToggle = (checked: boolean) => {
@@ -64,18 +69,18 @@ export function PricingCards({
         <span className="text-sm font-medium text-slate-600">Monthly</span>
         <Switch ref={switchRef} checked={!isMonthly} onCheckedChange={handleToggle} />
         <span className="text-sm font-medium text-ink">
-          Annual <span className="text-teal-dark font-semibold">(Save 20%)</span>
+          Annual <span className="text-teal-dark font-semibold">(Save 40%)</span>
         </span>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-10 items-center max-w-3xl mx-auto">
         {plans.map((plan, index) => (
           <motion.div
             key={plan.name}
-            initial={{ y: 30, opacity: 0 }}
-            whileInView={reduce ? { opacity: 1 } : { y: 0, opacity: 1 }}
+            initial={skipMotion ? false : { y: 30, opacity: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            transition={skipMotion ? { duration: 0 } : { duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className={`relative rounded-2xl border bg-white p-6 flex flex-col text-center ${
               plan.isPopular
                 ? "border-2 border-teal shadow-xl shadow-teal-dark/10 md:-translate-y-3"
@@ -89,18 +94,26 @@ export function PricingCards({
               </div>
             )}
             <p className="text-sm font-semibold text-slate-500 uppercase tracking-wide">{plan.name}</p>
-            <div className="mt-4 flex items-baseline justify-center gap-1">
-              <span className="font-display text-4xl font-semibold text-ink tabular-nums">
-                <NumberFlow
-                  value={isMonthly ? plan.price : plan.yearlyPrice}
-                  format={{ style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }}
-                  willChange
-                  transformTiming={{ duration: 500, easing: "ease-out" }}
-                />
-              </span>
-              <span className="text-sm text-slate-500">/ {plan.period}</span>
-            </div>
-            <p className="text-xs text-slate-500 mt-1">{isMonthly ? "billed monthly" : "billed annually"}</p>
+            {plan.isCustom ? (
+              <div className="mt-4 flex items-baseline justify-center gap-1">
+                <span className="font-display text-4xl font-semibold text-ink">{plan.customPrice ?? "Custom"}</span>
+              </div>
+            ) : (
+              <div className="mt-4 flex items-baseline justify-center gap-1">
+                <span className="font-display text-4xl font-semibold text-ink tabular-nums">
+                  <NumberFlow
+                    value={isMonthly ? plan.price ?? 0 : plan.yearlyPrice ?? 0}
+                    format={{ style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }}
+                    willChange
+                    transformTiming={{ duration: 500, easing: "ease-out" }}
+                  />
+                </span>
+                <span className="text-sm text-slate-500">/ {plan.period}</span>
+              </div>
+            )}
+            <p className="text-xs text-slate-500 mt-1">
+              {plan.isCustom ? "priced to your setup" : isMonthly ? "billed monthly" : "billed annually"}
+            </p>
 
             <ul className="mt-6 flex flex-col gap-2.5 text-left">
               {plan.features.map((feature) => (
