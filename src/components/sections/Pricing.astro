@@ -55,10 +55,33 @@ const plans = [
     class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_50%_60%_at_50%_100%,theme(colors.teal.light),transparent)]"
     aria-hidden="true"
   ></div>
-  <div class="relative mx-auto max-w-6xl px-6 py-6 md:py-10">
+  <div class="relative mx-auto max-w-6xl px-6 pt-6 md:pt-10 pb-4 md:pb-6">
     <PricingCards plans={plans} client:visible />
-    <p class="mt-8 md:mt-6 text-center text-xs text-slate-600">
-      A one-time setup fee covers catalogue import, hardware pairing, and staff training.
-    </p>
+    <div class="mt-5 md:mt-4 flex flex-wrap justify-center gap-x-8 gap-y-1.5 text-center">
+      <p class="flex items-center gap-1.5 text-xs font-medium text-ink">
+        <svg class="h-4 w-4 flex-shrink-0 text-teal-dark" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16.6 5.6 8.3 14 3.4 9.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Free 2-hour staff training, included
+      </p>
+      <p class="flex items-center gap-1.5 text-xs font-medium text-ink">
+        <svg class="h-4 w-4 flex-shrink-0 text-teal-dark" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16.6 5.6 8.3 14 3.4 9.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Free live demo, included
+      </p>
+      <p class="flex items-center gap-1.5 text-xs font-medium text-ink">
+        <svg class="h-4 w-4 flex-shrink-0 text-teal-dark" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16.6 5.6 8.3 14 3.4 9.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        Setup costs included, no surprise fees
+      </p>
+      <p class="flex items-center gap-1.5 text-xs font-medium text-ink">
+        <svg class="h-4 w-4 flex-shrink-0 text-teal-dark" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16.6 5.6 8.3 14 3.4 9.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        No new hardware. Runs on what you already have
+      </p>
+    </div>
   </div>
 </section>
