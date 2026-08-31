@@ -29,6 +29,71 @@
   }
 }
 
+/* Eyebrow label chip */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-teal-dark, #085041);
+  background: var(--color-teal-light, #e6f5ef);
+  padding: 0.3rem 0.65rem 0.3rem 0.55rem;
+  border-radius: 999px;
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-teal, #1d9e75);
+  flex-shrink: 0;
+}
+
+/* Tactile card hover: lift, deepen shadow, teal border */
+.card-hover {
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-teal, #1d9e75);
+  box-shadow: 0 20px 40px -20px rgba(8, 80, 65, 0.25);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hover:hover {
+    transform: none;
+  }
+}
+
+/* Cursor-reactive spotlight */
+[data-spotlight] {
+  position: relative;
+  overflow: hidden;
+}
+[data-spotlight]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(220px circle at var(--x, 50%) var(--y, 50%), rgba(29, 158, 117, 0.14), transparent 70%);
+}
+[data-spotlight]:hover::after {
+  opacity: 1;
+}
+
+/* Subtle dot-grid texture for alternating sections */
+.texture-dots {
+  background-image: radial-gradient(circle, rgba(8, 80, 65, 0.08) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
 /* Active-section nav underline */
 nav[aria-label="Primary"] a {
   position: relative;

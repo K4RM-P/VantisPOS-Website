@@ -23,7 +23,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Helvetica Neue"', 'sans-serif'],
+        display: ['"Fraunces"', 'ui-serif', 'Georgia', 'serif'],
         body: ['"Public Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
       borderRadius: {

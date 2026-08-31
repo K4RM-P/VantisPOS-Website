@@ -32,7 +32,7 @@ export const TestimonialsColumn = (props: {
           <React.Fragment key={dupIndex}>
             {props.testimonials.map(({ text, name, role, initials, hue }, i) => (
               <div
-                className="p-8 rounded border border-slate-200 bg-white shadow-sm max-w-xs w-full"
+                className="p-8 rounded border border-slate-200 bg-white shadow-sm max-w-xs w-full transition duration-300 hover:-translate-y-1 hover:rotate-1 hover:border-teal/40 hover:shadow-lg"
                 key={`${dupIndex}-${i}`}
               >
                 <p className="text-sm text-ink leading-relaxed">{text}</p>
